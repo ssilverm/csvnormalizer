@@ -27,6 +27,7 @@ def format_zip(zip_code):
 
 def format_seconds(duration):
     # This feels like a hack...
+    # Throws out the milliseconds by recasting float-string to int.
     duration = duration.split(":")
     delta = datetime.timedelta(
         hours=int(duration[0]),
@@ -49,7 +50,7 @@ with open(0, "r", errors="replace") as f:
         },
     )
 
-# Double check this isn't off by one row...
+# Double check this isn't off...
 df["TotalDuration"] = df["FooDuration"] + df["BarDuration"]
 
 df.to_csv(sys.stdout, index=False)
