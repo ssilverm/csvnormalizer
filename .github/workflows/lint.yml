@@ -1,0 +1,15 @@
+name: Lint
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install requirements.txt
+        run: pip install -r requirements.txt
+      - name: Lint flake8
+        run: flake8 normalizer.py
+      - name: Lint black
+        run: black --check normalizer.py 
+      - name: Lint isort
+        run: isort --check normalizer.py 
